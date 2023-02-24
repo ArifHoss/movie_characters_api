@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
+import javax.validation.constraints.NotNull;
 import java.util.Set;
 
 @Entity
@@ -17,8 +18,11 @@ public class Actor {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "actor_id")
     private int id;
+    @NotNull(message = "Actor first_name can't be null!")
     private String first_name;
+    @NotNull(message = "Actor last_name can't be null!")
     private String last_name;
+    @NotNull(message = "Actor alias can't be null!")
     private String alias;
     @Enumerated(EnumType.STRING)
     private GenderType gender;

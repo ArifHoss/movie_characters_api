@@ -3,6 +3,7 @@ package com.experis.movie_characters_api.model;
 import jakarta.persistence.*;
 import lombok.*;
 
+import javax.validation.constraints.NotNull;
 import java.util.Set;
 
 @Entity
@@ -16,7 +17,9 @@ public class Franchise {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "franchise_id")
     private int id;
+    @NotNull(message = "Franchise name can't be null!")
     private String name;
+    @NotNull(message = "Franchise description can't be null!")
     private String description;
 
     @OneToMany
