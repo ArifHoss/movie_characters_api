@@ -1,5 +1,6 @@
 package com.experis.movie_characters_api.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -15,7 +16,6 @@ public class Movie {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "movie_id")
     private int id;
     private String title;
     private String genre;
@@ -27,6 +27,7 @@ public class Movie {
     @ManyToMany
     private Set<Actor> actors;
     @ManyToOne
+    @JsonIgnore
     private Franchise franchise;
 
 

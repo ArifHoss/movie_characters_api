@@ -14,7 +14,6 @@ public class Franchise {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "franchise_id")
     private int id;
     private String name;
     private String description;

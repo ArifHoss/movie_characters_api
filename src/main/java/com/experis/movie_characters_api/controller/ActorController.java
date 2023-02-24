@@ -1,7 +1,7 @@
 package com.experis.movie_characters_api.controller;
 
 import com.experis.movie_characters_api.model.Actor;
-import com.experis.movie_characters_api.services.ActorServiceImpl;
+import com.experis.movie_characters_api.services.implementation.ActorServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

@@ -1,4 +1,4 @@
-package com.experis.movie_characters_api.services;
+package com.experis.movie_characters_api.services.service;
 
 import com.experis.movie_characters_api.model.Actor;
 
