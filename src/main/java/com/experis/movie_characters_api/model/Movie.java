@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
+import javax.validation.constraints.NotNull;
 import java.net.URL;
 import java.util.Set;
 
@@ -18,9 +19,13 @@ public class Movie {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "movie_id")
     private int id;
+    @NotNull(message = "Movie Title can't be null!")
     private String title;
+    @NotNull(message = "Movie Genre can't be null!")
     private String genre;
+    @NotNull(message = "Movie Release_year can't be null!")
     private String release_year;
+    @NotNull(message = "Movie Director_name can't be null!")
     private String director_name;
     private URL movie_poster;
     private URL movie_trailer;
