@@ -25,7 +25,7 @@ public class Movie {
     private URL movie_trailer;
 
     @ManyToMany
-    private Set<Character> characters;
+    private Set<Actor> actors;
     @ManyToOne
     private Franchise franchise;
 

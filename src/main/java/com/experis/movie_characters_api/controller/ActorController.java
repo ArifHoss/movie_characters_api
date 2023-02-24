@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/character")
-public class CharacterController {
+public class ActorController {
 
     @GetMapping
     public String getMessage() {

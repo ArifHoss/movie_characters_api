@@ -11,10 +11,10 @@ import java.util.Set;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Character {
+public class Actor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "character_id")
+    @Column(name = "actor_id")
     private int id;
     private String first_name;
     private String last_name;

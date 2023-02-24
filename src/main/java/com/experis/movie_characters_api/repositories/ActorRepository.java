@@ -1,9 +1,10 @@
 package com.experis.movie_characters_api.repositories;
 
-import com.experis.movie_characters_api.model.Movie;
+import com.experis.movie_characters_api.model.Actor;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface MovieRepository extends JpaRepository<Movie, Integer> {
+public interface ActorRepository extends JpaRepository<Actor, Integer> {
+
 }
