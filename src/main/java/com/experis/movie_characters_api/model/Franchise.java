@@ -14,11 +14,15 @@ public class Franchise {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "franchise_id")
     private int id;
     private String name;
     private String description;
 
     @OneToMany
+    @JoinTable(name = "franchise_movies",
+            joinColumns = @JoinColumn(name = "franchise_id"),
+            inverseJoinColumns = @JoinColumn(name = "movie_id"))
     private Set<Movie> movies;
 
 
