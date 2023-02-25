@@ -8,7 +8,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/actor")
@@ -19,8 +21,13 @@ public class ActorController {
     private final ActorMapperImpl actorMapper;
     @GetMapping
     @ResponseStatus(value = HttpStatus.OK)
-    public List<Actor> getAllActor() {
-        return actorServiceImpl.getAllActor();
+    public List<ActorDto> getAllActor() {
+        // Retrieves all actors from the database and mapps them to a list of 'ActorDto' objects using 'ActorMapper' class.
+        // The List is then returned a '200 OK' status code
+        List<Actor> actorList = actorServiceImpl.getAllActor();
+        return actorList.stream()
+                .map(actorMapper::toActorDto)
+                .collect(Collectors.toList());
     }
 
 //    @GetMapping("/{actorId}")

@@ -21,6 +21,7 @@ public class ActorServiceImpl implements ActorService {
 
     @Override
     public Actor getActorById(int id) {
-        return actorRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("Actor with this '"+id+", does not exist."));
+        return actorRepository.findById(id).orElseThrow(()->
+                new ResourceNotFoundException("Actor with this '"+id+", does not exist."));
     }
 }
