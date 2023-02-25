@@ -1,9 +1,9 @@
 package com.experis.movie_characters_api.services.implementation;
 
 import com.experis.movie_characters_api.exception.ResourceNotFoundException;
-import com.experis.movie_characters_api.model.Actor;
+import com.experis.movie_characters_api.model.entity.Actor;
 import com.experis.movie_characters_api.repositories.ActorRepository;
-import com.experis.movie_characters_api.services.service.ActorService;
+import com.experis.movie_characters_api.services.service_view.ActorService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

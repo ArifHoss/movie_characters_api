@@ -1,6 +1,6 @@
 package com.experis.movie_characters_api.repositories;
 
-import com.experis.movie_characters_api.model.Franchise;
+import com.experis.movie_characters_api.model.entity.Franchise;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

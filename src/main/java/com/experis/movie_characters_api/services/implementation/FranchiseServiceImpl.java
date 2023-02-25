@@ -1,7 +1,7 @@
 package com.experis.movie_characters_api.services.implementation;
 
 import com.experis.movie_characters_api.repositories.FranchiseRepository;
-import com.experis.movie_characters_api.services.service.FranchiseService;
+import com.experis.movie_characters_api.services.service_view.FranchiseService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
