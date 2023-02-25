@@ -1,4 +1,4 @@
-package com.experis.movie_characters_api.model;
+package com.experis.movie_characters_api.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
