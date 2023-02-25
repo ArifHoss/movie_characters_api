@@ -12,6 +12,7 @@ public class MovieDto {
     private String title;
     private String genre;
     private String release_year;
+    private String director_name;
     private URL movie_poster;
     private URL movie_trailer;
     private Set<Integer> actors;
