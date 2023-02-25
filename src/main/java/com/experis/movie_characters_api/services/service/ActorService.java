@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface ActorService {
     List<Actor> getAllActor();
+
+    Actor getActorById(int id);
 }

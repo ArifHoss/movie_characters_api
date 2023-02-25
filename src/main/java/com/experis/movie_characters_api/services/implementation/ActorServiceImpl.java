@@ -1,5 +1,6 @@
 package com.experis.movie_characters_api.services.implementation;
 
+import com.experis.movie_characters_api.exception.ResourceNotFoundException;
 import com.experis.movie_characters_api.model.Actor;
 import com.experis.movie_characters_api.repositories.ActorRepository;
 import com.experis.movie_characters_api.services.service.ActorService;
@@ -16,5 +17,10 @@ public class ActorServiceImpl implements ActorService {
 
     public List<Actor> getAllActor() {
         return actorRepository.findAll();
+    }
+
+    @Override
+    public Actor getActorById(int id) {
+        return actorRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("Actor with this '"+id+", does not exist."));
     }
 }
