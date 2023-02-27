@@ -23,7 +23,6 @@ public class Movie {
     private String title;
     @NotNull(message = "Movie Genre can't be null!")
     private String genre;
-    @NotNull(message = "Movie Release_year can't be null!")
     private String release_year;
     @NotNull(message = "Movie Director_name can't be null!")
     private String director_name;

@@ -22,7 +22,6 @@ public class Actor {
     private String first_name;
     @NotNull(message = "Actor last_name can't be null!")
     private String last_name;
-    @NotNull(message = "Actor alias can't be null!")
     private String alias;
     @Enumerated(EnumType.STRING)
     private GenderType gender;
