@@ -12,4 +12,6 @@ public interface ActorService {
     Actor createActor(Actor actor);
 
     String deleteActorById(int id);
+
+    Actor updateActorById(Actor actor, int id);
 }
