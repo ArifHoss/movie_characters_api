@@ -28,7 +28,7 @@ public class ActorController {
     @ResponseStatus(value = HttpStatus.OK)
     public List<ActorDto> getAllActor() {
         // Retrieves all actors from the database and mapps them to a list of 'ActorDto' objects using 'ActorMapper' class.
-        List<Actor> actorList = actorService.getAllActor();
+        List<Actor> actorList = actorService.getAll();
         return actorList.stream()
                 .map(actorMapper::toActorDto)
                 .collect(Collectors.toList());
@@ -38,21 +38,21 @@ public class ActorController {
     @GetMapping("/{actorId}") //http://localhost:8080/api/actor/{id}
     @ResponseStatus(value = HttpStatus.OK)
     public ActorDto getActorById(@PathVariable("actorId") int id) {
-        return actorMapper.toActorDto(actorService.getActorById(id));
+        return actorMapper.toActorDto(actorService.getById(id));
     }
 
     @Operation(summary = "CREATE ACTOR")
     @PostMapping("/create")//http://localhost:8080/api/actor/create
     @ResponseStatus(value = HttpStatus.CREATED)
     public ActorDto createActor(@RequestBody Actor actor) {
-        return actorMapper.toActorDto(actorService.createActor(actor));
+        return actorMapper.toActorDto(actorService.create(actor));
     }
 
     @Operation(summary = "UPDATE ACTOR")
     @PatchMapping("/update") //http://localhost:8080/api/actor/update/{actorId}
     @ResponseStatus(value = HttpStatus.OK)
     public ActorDto updateActorById(@RequestBody Actor actor, @PathVariable("actorId") int id) {
-        return actorMapper.toActorDto(actorService.updateActorById(actor, id));
+        return actorMapper.toActorDto(actorService.update(actor, id));
     }
 
 
@@ -60,7 +60,7 @@ public class ActorController {
     @DeleteMapping("/delete/{actorId}") //http://localhost:8080/api/actor/delete/{actorId}
     @ResponseStatus(value = HttpStatus.OK)
     public String deleteActorById(@PathVariable("actorId") int id) {
-        return actorService.deleteActorById(id);
+        return actorService.delete(id);
     }
 }
 

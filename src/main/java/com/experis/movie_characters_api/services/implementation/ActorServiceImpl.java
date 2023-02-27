@@ -15,29 +15,34 @@ import java.util.Optional;
 public class ActorServiceImpl implements ActorService {
     private final ActorRepository actorRepository;
 
-    public List<Actor> getAllActor() {
+    public List<Actor> getAll() {
         return actorRepository.findAll();
     }
 
     @Override
-    public Actor getActorById(int id) {
+    public Actor getById(int id) {
         return findById(id);
     }
 
     @Override
-    public Actor createActor(Actor actor) {
+    public Actor getByName(String name) {
+        return null;
+    }
+
+    @Override
+    public Actor create(Actor actor) {
         return actorRepository.save(actor);
     }
 
     @Override
-    public String deleteActorById(int id) {
+    public String delete(int id) {
         Actor actor = findById(id);
         actorRepository.delete(actor);
         return "Actor is deleted";
     }
 
     @Override
-    public Actor updateActorById(Actor actor, int id) {
+    public Actor update(Actor actor, int id) {
         Actor actorToUpdate = findById(id);
 
         // We need to read input

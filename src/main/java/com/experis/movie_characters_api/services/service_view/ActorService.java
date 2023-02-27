@@ -5,13 +5,14 @@ import com.experis.movie_characters_api.model.entity.Actor;
 import java.util.List;
 
 public interface ActorService {
-    List<Actor> getAllActor();
+    List<Actor> getAll();
 
-    Actor getActorById(int id);
+    Actor getById(int id);
+    Actor getByName(String name);
 
-    Actor createActor(Actor actor);
+    Actor create(Actor actor);
 
-    String deleteActorById(int id);
+    String delete(int id);
 
-    Actor updateActorById(Actor actor, int id);
+    Actor update(Actor actor, int id);
 }
