@@ -3,8 +3,8 @@ package com.experis.movie_characters_api.controller;
 import com.experis.movie_characters_api.model.dto.MovieDto;
 import com.experis.movie_characters_api.model.dto.MovieMapper;
 import com.experis.movie_characters_api.model.entity.Movie;
-import com.experis.movie_characters_api.services.implementation.MovieServiceImpl;
 import com.experis.movie_characters_api.services.service_view.MovieService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.stream.Collectors;
 
+
+@Tag(name = "Movie", description = "Operations related to managing movie.")
 @RestController
 @RequestMapping("/movie")
 @RequiredArgsConstructor

@@ -4,6 +4,7 @@ import com.experis.movie_characters_api.model.dto.ActorDto;
 import com.experis.movie_characters_api.model.dto.ActorMapper;
 import com.experis.movie_characters_api.model.entity.Actor;
 import com.experis.movie_characters_api.services.service_view.ActorService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -11,6 +12,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.stream.Collectors;
 
+
+@Tag(name = "Characters", description = "Operations related to managing movie characters")
 @RestController
 @RequestMapping("/actor")
 @RequiredArgsConstructor
