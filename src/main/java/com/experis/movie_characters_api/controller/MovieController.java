@@ -26,7 +26,7 @@ public class MovieController {
     @ResponseStatus(value = HttpStatus.OK)
     public List<MovieDto> getAllMovie() {
         // Retrieves all movies from the database and mapps them to a list of 'MovieDto' objects using 'MovieMapper' class.
-        List<Movie> movies = movieService.getAllMovie();
+        List<Movie> movies = movieService.getAll();
         return movies.stream().map(movieMapper::toMovieDto).collect(Collectors.toList());
     }
 
@@ -34,7 +34,7 @@ public class MovieController {
     @GetMapping("/{movieId}")
     @ResponseStatus(value = HttpStatus.FOUND)
     public MovieDto getMovieByID(@PathVariable("movieId") int movieId) {
-        Movie movie = movieService.getMovieById(movieId);
+        Movie movie = movieService.getById(movieId);
         return movieMapper.toMovieDto(movie);
     }
 }

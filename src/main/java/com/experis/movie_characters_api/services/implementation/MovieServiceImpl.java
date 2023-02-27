@@ -15,13 +15,33 @@ public class MovieServiceImpl implements MovieService {
     private final MovieRepository movieRepository;
 
     @Override
-    public List<Movie> getAllMovie() {
+    public List<Movie> getAll() {
         return movieRepository.findAll();
     }
 
     @Override
-    public Movie getMovieById(int movieId) {
+    public Movie getById(int movieId) {
         return movieRepository.findById(movieId).orElseThrow(() ->
                 new ResourceNotFoundException("Movie with '" + movieId + " does not found."));
+    }
+
+    @Override
+    public Movie getByName(String name) {
+        return null;
+    }
+
+    @Override
+    public Movie create(Movie movie) {
+        return null;
+    }
+
+    @Override
+    public String delete(int id) {
+        return null;
+    }
+
+    @Override
+    public Movie update(Movie movie, int id) {
+        return null;
     }
 }
