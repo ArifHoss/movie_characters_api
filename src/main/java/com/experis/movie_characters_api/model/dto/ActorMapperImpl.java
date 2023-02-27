@@ -4,6 +4,7 @@ import com.experis.movie_characters_api.model.entity.Actor;
 import com.experis.movie_characters_api.model.entity.Movie;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
 import java.util.stream.Collectors;
 
 @Component
@@ -16,9 +17,11 @@ public class ActorMapperImpl implements ActorMapper {
         dto.setLast_name(actor.getLast_name());
         dto.setAlias(actor.getAlias());
         dto.setGender(actor.getGender());
+
         if (actor.getMovies() != null) {
-            dto.setMovies(actor.getMovies().stream()
-                    .map(Movie::getId).collect(Collectors.toList()));
+            List<Integer> moviesId = actor.getMovies().stream()
+                    .map(Movie::getId).collect(Collectors.toList());
+            dto.setMovies(moviesId);
         }
 
         return dto;
