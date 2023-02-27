@@ -37,4 +37,28 @@ public class MovieController {
         Movie movie = movieService.getById(movieId);
         return movieMapper.toMovieDto(movie);
     }
+    @GetMapping("/name")
+    @ResponseStatus(value = HttpStatus.FOUND)
+    public MovieDto getMovieName(String name) {
+        Movie movie = movieService.getByName(name);
+        return movieMapper.toMovieDto(movie);
+    }
+    @PostMapping("/create")
+    @ResponseStatus(value = HttpStatus.CREATED)
+    public MovieDto createMovie(@RequestBody Movie movie) {
+       Movie createMovie = movieService.create(movie);
+        return movieMapper.toMovieDto(createMovie);
+    }
+    @DeleteMapping("/delete")
+    @ResponseStatus(value = HttpStatus.OK)
+    public String deleteMovie(@PathVariable("movieId") int id) {
+        movieService.delete(id);
+        return "Movie removed";
+    }
+
+    @PatchMapping("/update/{movieId}")
+    public MovieDto updateMovie(@RequestBody Movie movie,@PathVariable("movieId")int id) {
+        Movie updatedMovie = movieService.update(movie, id);
+        return movieMapper.toMovieDto(updatedMovie);
+    }
 }
