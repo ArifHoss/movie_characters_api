@@ -21,7 +21,7 @@ public class ActorController {
 
     private final ActorService actorService;
     private final ActorMapper actorMapper;
-    @GetMapping
+    @GetMapping //http://localhost:8080/api/actor
     @ResponseStatus(value = HttpStatus.OK)
     public List<ActorDto> getAllActor() {
         // Retrieves all actors from the database and mapps them to a list of 'ActorDto' objects using 'ActorMapper' class.
@@ -31,10 +31,16 @@ public class ActorController {
                 .collect(Collectors.toList());
     }
 
-    @GetMapping("/{actorId}")
+    @GetMapping("/{actorId}") //http://localhost:8080/api/actor/{id}
     @ResponseStatus(value = HttpStatus.OK)
     public ActorDto getActorById(@PathVariable("actorId") int id) {
         return actorMapper.toActorDto(actorService.getActorById(id));
+    }
+
+    @PostMapping("/create")//http://localhost:8080/api/actor/create
+    @ResponseStatus(value = HttpStatus.CREATED)
+    public ActorDto createActor(@RequestBody Actor actor) {
+        return actorMapper.toActorDto(actorService.createActor(actor));
     }
 
 }

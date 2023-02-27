@@ -24,4 +24,9 @@ public class ActorServiceImpl implements ActorService {
         return actorRepository.findById(id).orElseThrow(()->
                 new ResourceNotFoundException("Actor with this '"+id+", does not exist."));
     }
+
+    @Override
+    public Actor createActor(Actor actor) {
+        return actorRepository.save(actor);
+    }
 }
