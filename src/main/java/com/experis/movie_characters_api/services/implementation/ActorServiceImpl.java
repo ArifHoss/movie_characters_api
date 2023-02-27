@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -21,12 +22,20 @@ public class ActorServiceImpl implements ActorService {
 
     @Override
     public Actor getActorById(int id) {
-        return actorRepository.findById(id).orElseThrow(()->
-                new ResourceNotFoundException("Actor with this '"+id+", does not exist."));
+        return actorRepository.findById(id).orElseThrow(() ->
+                new ResourceNotFoundException("Actor with this id '" + id + "', does not exist."));
     }
 
     @Override
     public Actor createActor(Actor actor) {
         return actorRepository.save(actor);
+    }
+
+    @Override
+    public String deleteActorById(int id) {
+        Actor actor = actorRepository.findById(id).orElseThrow(() ->
+                new ResourceNotFoundException("Actor with this id '" + id + "', does not exist."));
+        actorRepository.delete(actor);
+        return "Actor is deleted";
     }
 }

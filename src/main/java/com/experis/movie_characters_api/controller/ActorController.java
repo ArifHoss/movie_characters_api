@@ -21,6 +21,7 @@ public class ActorController {
 
     private final ActorService actorService;
     private final ActorMapper actorMapper;
+
     @GetMapping //http://localhost:8080/api/actor
     @ResponseStatus(value = HttpStatus.OK)
     public List<ActorDto> getAllActor() {
@@ -43,4 +44,31 @@ public class ActorController {
         return actorMapper.toActorDto(actorService.createActor(actor));
     }
 
+    @DeleteMapping("/delete/{actorId}") //http://localhost:8080/api/actor/delete
+    @ResponseStatus(value = HttpStatus.OK)
+    public String deleteActorById(@PathVariable("actorId") int id) {
+        return actorService.deleteActorById(id);
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
