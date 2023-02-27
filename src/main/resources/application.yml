@@ -21,8 +21,8 @@ spring:
   sql:
     init:
       mode: never
-springdoc:
-  swagger-ui:
-    operationsSorter: method
+#springdoc:
+#  swagger-ui:
+#    operationsSorter: method
 
 
