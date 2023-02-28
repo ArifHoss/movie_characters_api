@@ -1,5 +1,6 @@
 package com.experis.movie_characters_api.services.implementation;
 
+import com.experis.movie_characters_api.exception.ResourceNotFoundException;
 import com.experis.movie_characters_api.model.entity.Franchise;
 import com.experis.movie_characters_api.repositories.FranchiseRepository;
 import com.experis.movie_characters_api.services.service_view.FranchiseService;
@@ -20,7 +21,7 @@ public class FranchiseServiceImpl implements FranchiseService {
 
     @Override
     public Franchise getById(int id) {
-        return null;
+        return getFranchiseById(id);
     }
 
     @Override
@@ -41,5 +42,10 @@ public class FranchiseServiceImpl implements FranchiseService {
     @Override
     public Franchise update(Franchise franchise, int id) {
         return null;
+    }
+
+    private Franchise getFranchiseById(int id) {
+        return franchiseRepository.findById(id).orElseThrow(() ->
+                new ResourceNotFoundException("There is no franchise with this id '" + id + "'"));
     }
 }
