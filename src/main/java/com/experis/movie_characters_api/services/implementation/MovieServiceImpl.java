@@ -26,7 +26,6 @@ public class MovieServiceImpl implements MovieService {
 
     @Override
     public Movie getByName(String name) {
-
         return null;
     }
 

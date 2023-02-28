@@ -32,7 +32,6 @@ public class MovieController {
         return movies.stream().map(movieMapper::toMovieDto).collect(Collectors.toList());
     }
 
-
     @Operation(summary = "GET MOVIE BY ID")
     @GetMapping("/{movieId}") //http://localhost:8080/api/movie/{Id}
     @ResponseStatus(value = HttpStatus.FOUND)
@@ -44,7 +43,7 @@ public class MovieController {
     @Operation(summary = "GET MOVIE BY NAME")
     @GetMapping("/name") //http://localhost:8080/api/movie/{name}
     @ResponseStatus(value = HttpStatus.FOUND)
-    public MovieDto getMovieName(@PathVariable("name") String name) {
+    public MovieDto getMovieName(@RequestParam String name) {
         Movie movie = movieService.getByName(name);
         return movieMapper.toMovieDto(movie);
     }
