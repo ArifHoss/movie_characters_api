@@ -1,13 +1,17 @@
 package com.experis.movie_characters_api.services.implementation;
 
 import com.experis.movie_characters_api.exception.ResourceNotFoundException;
+import com.experis.movie_characters_api.model.entity.Actor;
 import com.experis.movie_characters_api.model.entity.Movie;
 import com.experis.movie_characters_api.repositories.MovieRepository;
 import com.experis.movie_characters_api.services.service_view.MovieService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.function.UnaryOperator;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -47,6 +51,20 @@ public class MovieServiceImpl implements MovieService {
 
         movieRepository.save(movieToUpdate);
         return movieToUpdate;
+    }
+
+    @Override
+    public Movie updateActors(List<Integer> actorsId, int id) {
+        Movie movie = getMovieById(id);
+        // old actor id list
+        List<Integer> actorIdList = movie.getActors().stream().map(Actor::getId).collect(Collectors.toList());
+        // new actor id list 'actorsID'
+        actorIdList.replaceAll((UnaryOperator<Integer>) actorsId);
+
+//        actorsId.stream().map(integer -> actorIdList.)
+//        movie.setActors();
+        movieRepository.save(movie);
+        return movie;
     }
 
     @Override

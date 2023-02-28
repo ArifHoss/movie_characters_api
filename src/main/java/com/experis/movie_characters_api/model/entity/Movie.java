@@ -29,10 +29,10 @@ public class Movie {
     private URL movie_poster;
     private URL movie_trailer;
 
-    @ManyToMany
+    @ManyToMany(mappedBy = "movies")
     private Set<Actor> actors;
+//    @JsonIgnore
     @ManyToOne
-    @JsonIgnore
     private Franchise franchise;
 
 

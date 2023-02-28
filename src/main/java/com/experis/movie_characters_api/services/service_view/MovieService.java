@@ -12,4 +12,5 @@ public interface MovieService {
     String delete(int id);
     Movie update(Movie movie, int id);
 
+    Movie updateActors(List<Integer> actorsId,int id);
 }

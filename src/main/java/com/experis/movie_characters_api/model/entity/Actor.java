@@ -25,8 +25,8 @@ public class Actor {
     private String alias;
     @Enumerated(EnumType.STRING)
     private GenderType gender;
+//    @JsonIgnore
     @ManyToMany
-    @JsonIgnore
     @JoinTable(name = "actor_movies",
             joinColumns = @JoinColumn(name = "actor_id"),
             inverseJoinColumns = @JoinColumn(name = "movie_id"))
