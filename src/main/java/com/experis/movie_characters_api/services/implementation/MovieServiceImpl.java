@@ -3,13 +3,17 @@ package com.experis.movie_characters_api.services.implementation;
 import com.experis.movie_characters_api.exception.ResourceNotFoundException;
 import com.experis.movie_characters_api.model.entity.Actor;
 import com.experis.movie_characters_api.model.entity.Movie;
+import com.experis.movie_characters_api.repositories.ActorRepository;
 import com.experis.movie_characters_api.repositories.MovieRepository;
 import com.experis.movie_characters_api.services.service_view.MovieService;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.function.UnaryOperator;
 import java.util.stream.Collectors;
 
@@ -17,6 +21,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class MovieServiceImpl implements MovieService {
     private final MovieRepository movieRepository;
+    private final ActorRepository actorRepository;
 
     @Override
     public List<Movie> getAll() {
@@ -53,16 +58,23 @@ public class MovieServiceImpl implements MovieService {
         return movieToUpdate;
     }
 
+    @Transactional
     @Override
     public Movie updateActors(List<Integer> actorsId, int id) {
         Movie movie = getMovieById(id);
-        // old actor id list
-        List<Integer> actorIdList = movie.getActors().stream().map(Actor::getId).collect(Collectors.toList());
-        // new actor id list 'actorsID'
-        actorIdList.replaceAll((UnaryOperator<Integer>) actorsId);
 
-//        actorsId.stream().map(integer -> actorIdList.)
-//        movie.setActors();
+        Set<Actor> newActors = new HashSet<>(actorRepository.findAllById(actorsId));
+        Set<Actor> existingActors = movie.getActors();
+
+        for (Actor actor : existingActors) {
+            actor.setMovies(null);
+            actorRepository.save(actor);
+        }
+        for (Actor actor : newActors) {
+            actor.getMovies().add(movie);
+            actorRepository.save(actor);
+        }
+        movie.setActors(newActors);
         movieRepository.save(movie);
         return movie;
     }

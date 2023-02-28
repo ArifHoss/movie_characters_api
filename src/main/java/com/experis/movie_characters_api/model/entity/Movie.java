@@ -29,7 +29,7 @@ public class Movie {
     private URL movie_poster;
     private URL movie_trailer;
 
-    @ManyToMany(mappedBy = "movies")
+    @ManyToMany(mappedBy = "movies", cascade = CascadeType.PERSIST)
     private Set<Actor> actors;
 //    @JsonIgnore
     @ManyToOne

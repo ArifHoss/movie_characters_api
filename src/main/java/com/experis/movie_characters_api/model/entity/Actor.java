@@ -26,7 +26,7 @@ public class Actor {
     @Enumerated(EnumType.STRING)
     private GenderType gender;
 //    @JsonIgnore
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.PERSIST)
     @JoinTable(name = "actor_movies",
             joinColumns = @JoinColumn(name = "actor_id"),
             inverseJoinColumns = @JoinColumn(name = "movie_id"))

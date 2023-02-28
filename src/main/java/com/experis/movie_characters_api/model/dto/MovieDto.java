@@ -3,6 +3,7 @@ package com.experis.movie_characters_api.model.dto;
 import lombok.Data;
 
 import java.net.URL;
+import java.util.List;
 import java.util.Set;
 
 @Data
@@ -15,7 +16,7 @@ public class MovieDto {
     private String director_name;
     private URL movie_poster;
     private URL movie_trailer;
-    private Set<Integer> actors;
+    private List<Integer> actors;
     private Integer franchise;
 
 }
