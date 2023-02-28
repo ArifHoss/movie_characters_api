@@ -1,5 +1,6 @@
 package com.experis.movie_characters_api.services.implementation;
 
+import com.experis.movie_characters_api.exception.ResourceNotFoundException;
 import com.experis.movie_characters_api.model.entity.Franchise;
 import com.experis.movie_characters_api.repositories.FranchiseRepository;
 import com.experis.movie_characters_api.services.service_view.FranchiseService;
@@ -15,12 +16,12 @@ public class FranchiseServiceImpl implements FranchiseService {
 
     @Override
     public List<Franchise> getAll() {
-        return null;
+        return franchiseRepository.findAll();
     }
 
     @Override
     public Franchise getById(int id) {
-        return null;
+        return getFranchiseById(id);
     }
 
     @Override
@@ -29,17 +30,27 @@ public class FranchiseServiceImpl implements FranchiseService {
     }
 
     @Override
-    public Franchise create(Franchise franchise, int id) {
-        return null;
+    public Franchise create(Franchise franchise) {
+        return franchiseRepository.save(franchise);
     }
 
     @Override
-    public String delete(int id) {
-        return null;
+    public void delete(int id) {
+        Franchise franchise = getFranchiseById(id);
+        franchiseRepository.delete(franchise);
     }
 
     @Override
     public Franchise update(Franchise franchise, int id) {
-        return null;
+        Franchise findFranchiseToUpdate = getFranchiseById(id);
+        findFranchiseToUpdate.setName(franchise.getName());
+        findFranchiseToUpdate.setDescription(franchise.getDescription());
+        franchiseRepository.save(findFranchiseToUpdate);
+        return findFranchiseToUpdate;
+    }
+
+    private Franchise getFranchiseById(int id) {
+        return franchiseRepository.findById(id).orElseThrow(() ->
+                new ResourceNotFoundException("There is no franchise with this id '" + id + "'"));
     }
 }

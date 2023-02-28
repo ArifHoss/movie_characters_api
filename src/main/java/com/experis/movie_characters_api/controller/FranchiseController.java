@@ -42,10 +42,10 @@ public class FranchiseController {
         return franchiseMapper.toFranchiseDto(franchiseService.getByName(name));
     }
 
-    @PostMapping("/create/{franchiseId}")
+    @PostMapping("/create")
     @ResponseStatus(value = HttpStatus.CREATED)
-    public FranchiseDto createFranchise(@RequestBody Franchise franchise, @PathVariable("franchiseId") int id) {
-        Franchise createFranchise = franchiseService.create(franchise, id);
+    public FranchiseDto createFranchise(@RequestBody Franchise franchise) {
+        Franchise createFranchise = franchiseService.create(franchise);
         return franchiseMapper.toFranchiseDto(createFranchise);
     }
 

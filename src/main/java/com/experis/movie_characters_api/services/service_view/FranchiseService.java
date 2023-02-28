@@ -8,7 +8,7 @@ public interface FranchiseService {
     List<Franchise> getAll();
     Franchise getById(int id);
     Franchise getByName(String name);
-    Franchise create(Franchise franchise, int id);
-    String delete(int id);
+    Franchise create(Franchise franchise);
+    void delete(int id);
     Franchise update(Franchise franchise, int id);
 }
