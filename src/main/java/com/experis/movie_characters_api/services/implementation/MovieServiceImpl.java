@@ -26,12 +26,13 @@ public class MovieServiceImpl implements MovieService {
 
     @Override
     public Movie getByName(String name) {
+
         return null;
     }
 
     @Override
     public Movie create(Movie movie) {
-        return null;
+        return movieRepository.save(movie);
     }
 
     @Override

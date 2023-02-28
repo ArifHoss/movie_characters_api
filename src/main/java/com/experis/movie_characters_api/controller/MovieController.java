@@ -41,14 +41,16 @@ public class MovieController {
         return movieMapper.toMovieDto(movie);
     }
 
-    @GetMapping("/name")
+    @Operation(summary = "GET MOVIE BY NAME")
+    @GetMapping("/name") //http://localhost:8080/api/movie/{name}
     @ResponseStatus(value = HttpStatus.FOUND)
-    public MovieDto getMovieName(String name) {
+    public MovieDto getMovieName(@PathVariable("name") String name) {
         Movie movie = movieService.getByName(name);
         return movieMapper.toMovieDto(movie);
     }
 
-    @PostMapping("/create")
+    @Operation(summary = "CREATE MOVIE")
+    @PostMapping("/create") //http://localhost:8080/api/movie/create
     @ResponseStatus(value = HttpStatus.CREATED)
     public MovieDto createMovie(@RequestBody Movie movie) {
         Movie createMovie = movieService.create(movie);
