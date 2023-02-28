@@ -56,7 +56,7 @@ public class MovieController {
         return movieMapper.toMovieDto(createMovie);
     }
 
-    @PatchMapping("/update/{movieId}")
+    @PatchMapping("/update/{movieId}") //http://localhost:8080/api/movie/update/{actorId}
     public MovieDto updateMovie(@RequestBody Movie movie, @PathVariable("movieId") int id) {
         Movie updatedMovie = movieService.update(movie, id);
         return movieMapper.toMovieDto(updatedMovie);
