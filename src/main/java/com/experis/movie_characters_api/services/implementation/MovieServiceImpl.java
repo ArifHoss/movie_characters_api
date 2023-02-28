@@ -36,18 +36,19 @@ public class MovieServiceImpl implements MovieService {
     }
 
     @Override
-    public String delete(int id) {
+    public Movie update(Movie movie, int id) {
         return null;
     }
 
     @Override
-    public Movie update(Movie movie, int id) {
-        return null;
+    public String delete(int movieId) {
+        Movie movie = getMovieById(movieId);
+        movieRepository.delete(movie);
+        return "Movie is deleted";
     }
 
     private Movie getMovieById(int movieId) {
         return movieRepository.findById(movieId).orElseThrow(() ->
                 new ResourceNotFoundException("Movie with '" + movieId + " does not found."));
     }
-
 }
