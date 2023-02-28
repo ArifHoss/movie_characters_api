@@ -35,8 +35,9 @@ public class FranchiseServiceImpl implements FranchiseService {
     }
 
     @Override
-    public String delete(int id) {
-        return null;
+    public void delete(int id) {
+        Franchise franchise = getFranchiseById(id);
+        franchiseRepository.delete(franchise);
     }
 
     @Override
