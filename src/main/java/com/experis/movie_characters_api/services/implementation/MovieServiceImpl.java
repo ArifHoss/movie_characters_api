@@ -21,8 +21,7 @@ public class MovieServiceImpl implements MovieService {
 
     @Override
     public Movie getById(int movieId) {
-        return movieRepository.findById(movieId).orElseThrow(() ->
-                new ResourceNotFoundException("Movie with '" + movieId + " does not found."));
+        return getMovieById(movieId);
     }
 
     @Override
@@ -44,4 +43,10 @@ public class MovieServiceImpl implements MovieService {
     public Movie update(Movie movie, int id) {
         return null;
     }
+
+    private Movie getMovieById(int movieId) {
+        return movieRepository.findById(movieId).orElseThrow(() ->
+                new ResourceNotFoundException("Movie with '" + movieId + " does not found."));
+    }
+
 }
