@@ -36,7 +36,17 @@ public class MovieServiceImpl implements MovieService {
 
     @Override
     public Movie update(Movie movie, int id) {
-        return null;
+        Movie movieToUpdate = getMovieById(id);
+
+        movieToUpdate.setTitle(movie.getTitle());
+        movieToUpdate.setGenre(movie.getGenre());
+        movieToUpdate.setRelease_year(movie.getRelease_year());
+        movieToUpdate.setDirector_name(movie.getDirector_name());
+        movieToUpdate.setMovie_poster(movie.getMovie_poster());
+        movieToUpdate.setMovie_trailer(movie.getMovie_trailer());
+
+        movieRepository.save(movieToUpdate);
+        return movieToUpdate;
     }
 
     @Override
