@@ -42,7 +42,11 @@ public class FranchiseServiceImpl implements FranchiseService {
 
     @Override
     public Franchise update(Franchise franchise, int id) {
-        return null;
+        Franchise findFranchiseToUpdate = getFranchiseById(id);
+        findFranchiseToUpdate.setName(franchise.getName());
+        findFranchiseToUpdate.setDescription(franchise.getDescription());
+        franchiseRepository.save(findFranchiseToUpdate);
+        return findFranchiseToUpdate;
     }
 
     private Franchise getFranchiseById(int id) {
