@@ -49,7 +49,7 @@ public class ActorController {
     }
 
     @Operation(summary = "UPDATE ACTOR")
-    @PatchMapping("/update") //http://localhost:8080/api/actor/update/{actorId}
+    @PatchMapping("/update/{actorId}") //http://localhost:8080/api/actor/update/{actorId}
     @ResponseStatus(value = HttpStatus.OK)
     public ActorDto updateActorById(@RequestBody Actor actor, @PathVariable("actorId") int id) {
         return actorMapper.toActorDto(actorService.update(actor, id));
