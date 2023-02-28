@@ -2,10 +2,12 @@ package com.experis.movie_characters_api.model.dto;
 
 import com.experis.movie_characters_api.model.entity.Franchise;
 import com.experis.movie_characters_api.model.entity.Movie;
+import org.springframework.stereotype.Component;
 
 import java.util.Set;
 import java.util.stream.Collectors;
 
+@Component
 public class FranchiseMapperImpl implements FranchiseMapper{
     @Override
     public FranchiseDto toFranchiseDto(Franchise franchise) {

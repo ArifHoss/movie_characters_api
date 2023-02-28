@@ -15,7 +15,7 @@ public class FranchiseServiceImpl implements FranchiseService {
 
     @Override
     public List<Franchise> getAll() {
-        return null;
+        return franchiseRepository.findAll();
     }
 
     @Override
