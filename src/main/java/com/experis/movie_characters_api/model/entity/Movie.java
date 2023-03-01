@@ -33,6 +33,9 @@ public class Movie {
     private Set<Actor> actors;
 //    @JsonIgnore
     @ManyToOne
+    @JoinTable(name = "franchise_movies",
+            joinColumns = @JoinColumn(name = "franchise_id"),
+            inverseJoinColumns = @JoinColumn(name = "movie_id"))
     private Franchise franchise;
 
 
