@@ -67,10 +67,14 @@ public class MovieServiceImpl implements MovieService {
 
         Set<Actor> newActors = new HashSet<>(actorRepository.findAllById(actorsId));
         Set<Actor> existingActors = movie.getActors();
+
         if (actorsId.size() != newActors.size()) {
             throw new ConflictException("You can not add to same character!");
         }
-        if (newActors.containsAll(existingActors) || newActors.stream().anyMatch(actor -> newActors.stream().anyMatch(old -> actor != old))) {
+
+        boolean hasDuplicateActors  = newActors.stream().anyMatch(actor -> newActors.stream().anyMatch(old -> actor != old));
+
+        if (newActors.containsAll(existingActors) || hasDuplicateActors ) {
             throw new ConflictException("Do not do it!Last warning!");
         }
 
