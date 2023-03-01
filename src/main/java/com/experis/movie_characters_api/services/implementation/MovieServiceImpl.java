@@ -61,7 +61,7 @@ public class MovieServiceImpl implements MovieService {
 
     @Transactional
     @Override
-    public Movie updateActors(List<Integer> actorsId, int id) { // God function
+    public Movie updateMovieActors(List<Integer> actorsId, int id) { // God function
         Movie movie = getMovieById(id);
 
 
