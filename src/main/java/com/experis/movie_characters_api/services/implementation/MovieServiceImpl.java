@@ -1,5 +1,6 @@
 package com.experis.movie_characters_api.services.implementation;
 
+import com.experis.movie_characters_api.exception.ConflictException;
 import com.experis.movie_characters_api.exception.ResourceNotFoundException;
 import com.experis.movie_characters_api.model.entity.Actor;
 import com.experis.movie_characters_api.model.entity.Movie;
@@ -60,11 +61,19 @@ public class MovieServiceImpl implements MovieService {
 
     @Transactional
     @Override
-    public Movie updateActors(List<Integer> actorsId, int id) {
+    public Movie updateActors(List<Integer> actorsId, int id) { // God function
         Movie movie = getMovieById(id);
+
 
         Set<Actor> newActors = new HashSet<>(actorRepository.findAllById(actorsId));
         Set<Actor> existingActors = movie.getActors();
+        if (actorsId.size() != newActors.size()) {
+            throw new ConflictException("You can not add to same character!");
+        }
+        if (newActors.containsAll(existingActors) || newActors.stream().anyMatch(actor -> newActors.stream().anyMatch(old -> actor != old))) {
+            throw new ConflictException("Do not do it!Last warning!");
+        }
+
 
         for (Actor actor : existingActors) {
             actor.setMovies(null);
