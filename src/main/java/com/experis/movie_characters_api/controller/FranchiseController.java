@@ -61,4 +61,11 @@ public class FranchiseController {
     public FranchiseDto updateFranchise(@RequestBody Franchise franchise, @PathVariable("franchiseId") int id) {
         return franchiseMapper.toFranchiseDto(franchiseService.update(franchise, id));
     }
+
+
+    @PatchMapping("/update/movies/{franchiseId}")
+    @ResponseStatus(value = HttpStatus.OK)
+    public FranchiseDto updateFranchiseMovies(@RequestBody List<Integer> moviesId, @PathVariable("franchiseId") int id) {
+        return franchiseMapper.toFranchiseDto(franchiseService.updateFranchiseMovies(moviesId, id));
+    }
 }

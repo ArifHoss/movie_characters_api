@@ -11,4 +11,6 @@ public interface FranchiseService {
     Franchise create(Franchise franchise);
     void delete(int id);
     Franchise update(Franchise franchise, int id);
+
+    Franchise updateFranchiseMovies(List<Integer> moviesId, int id);
 }
