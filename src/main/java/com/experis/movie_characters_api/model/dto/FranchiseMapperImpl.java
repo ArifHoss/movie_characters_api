@@ -16,7 +16,7 @@ public class FranchiseMapperImpl implements FranchiseMapper{
         dto.setId(franchise.getId());
         dto.setName(franchise.getName());
         dto.setDescription(franchise.getDescription());
-        if (dto.getMovies()!=null) {
+        if (franchise.getMovies()!=null) {
             List<Integer> movieIdSet = franchise.getMovies()
                     .stream()
                     .map(Movie::getId).collect(Collectors.toList());
