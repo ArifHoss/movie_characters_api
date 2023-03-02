@@ -99,9 +99,8 @@ public class MovieServiceImpl implements MovieService {
             franchise.setMovies(null);
         }
 
-        // Denna fungerar inte
         for (Actor actor : actors) {
-            actor.setMovies(null);
+            actor.getMovies().remove(movie);
         }
         movieRepository.delete(movie);
         return "Movie is deleted";
