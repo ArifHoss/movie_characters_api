@@ -3,6 +3,7 @@ package com.experis.movie_characters_api.services.implementation;
 import com.experis.movie_characters_api.exception.ConflictException;
 import com.experis.movie_characters_api.exception.ResourceNotFoundException;
 import com.experis.movie_characters_api.model.entity.Actor;
+import com.experis.movie_characters_api.model.entity.Franchise;
 import com.experis.movie_characters_api.model.entity.Movie;
 import com.experis.movie_characters_api.repositories.ActorRepository;
 import com.experis.movie_characters_api.repositories.MovieRepository;
@@ -69,11 +70,11 @@ public class MovieServiceImpl implements MovieService {
             throw new ConflictException("You can not add to same character!");
         }
 
-        boolean hasDuplicateActors  = newActors.stream().anyMatch(actor -> newActors.stream().anyMatch(old -> actor != old));
-
-        if (newActors.containsAll(existingActors) || hasDuplicateActors ) {
-            throw new ConflictException("Do not do it!Last warning!");
-        }
+//        boolean hasDuplicateActors  = newActors.stream().anyMatch(actor -> newActors.stream().anyMatch(old -> actor != old));
+//
+//        if (newActors.containsAll(existingActors) || hasDuplicateActors ) {
+//            throw new ConflictException("Do not do it!Last warning!");
+//        }
 
 
         for (Actor actor : existingActors) {
@@ -92,6 +93,16 @@ public class MovieServiceImpl implements MovieService {
     @Override
     public String delete(int movieId) {
         Movie movie = getMovieById(movieId);
+        Franchise franchise = movie.getFranchise();
+        Set<Actor> actors = movie.getActors();
+        if (movie.getFranchise() != null) {
+            franchise.setMovies(null);
+        }
+
+        // Denna fungerar inte
+        for (Actor actor : actors) {
+            actor.setMovies(null);
+        }
         movieRepository.delete(movie);
         return "Movie is deleted";
     }

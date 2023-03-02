@@ -2,6 +2,7 @@ package com.experis.movie_characters_api.services.implementation;
 
 import com.experis.movie_characters_api.exception.ResourceNotFoundException;
 import com.experis.movie_characters_api.model.entity.Actor;
+import com.experis.movie_characters_api.model.entity.Movie;
 import com.experis.movie_characters_api.repositories.ActorRepository;
 import com.experis.movie_characters_api.services.service_view.ActorService;
 import lombok.RequiredArgsConstructor;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
@@ -37,6 +39,12 @@ public class ActorServiceImpl implements ActorService {
     @Override
     public String delete(int id) {
         Actor actor = findById(id);
+        Set<Movie> movies = actor.getMovies();
+
+        for (Movie movie : movies) {
+            movie.setActors(null);
+        }
+
         actorRepository.delete(actor);
         return "Actor is deleted";
     }
