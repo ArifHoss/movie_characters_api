@@ -12,6 +12,7 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -33,8 +34,11 @@ public class MovieServiceImpl implements MovieService {
     }
 
     @Override
-    public Movie getByName(String name) {
-        return null;
+    public List<Actor> getActorsFromAMovie(int id) {
+        Movie movie = getMovieById(id);
+        Set<Actor> actors = movie.getActors();
+
+        return new ArrayList<>(actors);
     }
 
     @Override
