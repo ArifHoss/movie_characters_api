@@ -29,10 +29,13 @@ public class Movie {
     private URL movie_poster;
     private URL movie_trailer;
 
-    @ManyToMany
+    @ManyToMany(mappedBy = "movies", cascade = CascadeType.PERSIST)
     private Set<Actor> actors;
+//    @JsonIgnore
     @ManyToOne
-    @JsonIgnore
+    @JoinTable(name = "franchise_movies",
+            joinColumns = @JoinColumn(name = "franchise_id"),
+            inverseJoinColumns = @JoinColumn(name = "movie_id"))
     private Franchise franchise;
 
 

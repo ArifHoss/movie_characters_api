@@ -8,7 +8,6 @@ public interface ActorService {
     List<Actor> getAll();
 
     Actor getById(int id);
-    Actor getByName(String name);
 
     Actor create(Actor actor);
 

@@ -4,7 +4,11 @@ VALUES ('Tom', 'Hanks', 'The Nicest Guy in Hollywood', 'MALE'),
        ('Emma', 'Stone', 'Riley Stone', 'FEMALE'),
        ('Leonardo', 'DiCaprio', 'Leo', 'MALE'),
        ('Gal', 'Gadot', 'Wonder Woman', 'FEMALE'),
-       ('Hugh', 'Jackman', 'Wolverine', 'MALE');
+       ('Hugh', 'Jackman', 'Wolverine', 'MALE'),
+    ('ArifH', 'Jackman', 'Wolverine', 'MALE'),
+    ('Zakida', 'Jackman', 'Wolverine', 'MALE'),
+    ('Erik', 'Jackman', 'Wolverine', 'MALE'),
+    ('Rubin', 'Jackman', 'Wolverine', 'MALE');
 
 
 -- Movie
@@ -18,8 +22,11 @@ VALUES ('Forrest Gump', 'Drama, Romance', '1994', 'Robert Zemeckis', 'http://exa
        ('Wonder Woman', 'Action, Adventure, Fantasy', '2017', 'Patty Jenkins',
         'http://example.com/wonder-woman-poster.jpg', 'http://example.com/wonder-woman-trailer.mp4'),
        ('Logan', 'Action, Drama, Sci-Fi', '2017', 'James Mangold', 'http://example.com/logan-poster.jpg',
-        'http://example.com/logan-trailer.mp4');
-
+        'http://example.com/logan-trailer.mp4'),
+('Troy', 'Action, Drama, Sci-Fi', '2017', 'James Mangold', 'http://example.com/logan-poster.jpg',
+    'http://example.com/logan-trailer.mp4'),
+('Terminator', 'Action, Drama, Sci-Fi', '2017', 'James Mangold', 'http://example.com/logan-poster.jpg',
+    'http://example.com/logan-trailer.mp4');
 
 -- Franchise
 INSERT INTO franchise (name, description)
@@ -65,11 +72,11 @@ VALUES (1, 1);
 
 --La La Land in the Lionsgate franchise
 INSERT INTO franchise_movies (franchise_id, movie_id)
-VALUES (2,2);
+VALUES (2, 2);
 
 -- The Revenant in the 20th Century Fox franchise
 INSERT INTO franchise_movies (franchise_id, movie_id)
-VALUES (3,3);
+VALUES (3, 3);
 
 -- Wonder Woman in the DC Extended Universe franchise
 INSERT INTO franchise_movies (franchise_id, movie_id)

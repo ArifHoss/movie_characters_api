@@ -27,7 +27,6 @@ public class ActorController {
     @GetMapping //http://localhost:8080/api/actor
     @ResponseStatus(value = HttpStatus.OK)
     public List<ActorDto> getAllActor() {
-        // Retrieves all actors from the database and mapps them to a list of 'ActorDto' objects using 'ActorMapper' class.
         List<Actor> actorList = actorService.getAll();
         return actorList.stream()
                 .map(actorMapper::toActorDto)
@@ -49,7 +48,7 @@ public class ActorController {
     }
 
     @Operation(summary = "UPDATE ACTOR")
-    @PatchMapping("/update") //http://localhost:8080/api/actor/update/{actorId}
+    @PatchMapping("/update/{actorId}") //http://localhost:8080/api/actor/update/{actorId}
     @ResponseStatus(value = HttpStatus.OK)
     public ActorDto updateActorById(@RequestBody Actor actor, @PathVariable("actorId") int id) {
         return actorMapper.toActorDto(actorService.update(actor, id));

@@ -22,10 +22,7 @@ public class Franchise {
     @NotNull(message = "Franchise description can't be null!")
     private String description;
 
-    @OneToMany
-    @JoinTable(name = "franchise_movies",
-            joinColumns = @JoinColumn(name = "franchise_id"),
-            inverseJoinColumns = @JoinColumn(name = "movie_id"))
+    @OneToMany(mappedBy = "franchise")
     private Set<Movie> movies;
 
 

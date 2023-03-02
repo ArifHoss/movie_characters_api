@@ -4,8 +4,10 @@ import com.experis.movie_characters_api.model.entity.Franchise;
 import com.experis.movie_characters_api.model.entity.Movie;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
+
 @Component
 public class FranchiseMapperImpl implements FranchiseMapper{
     @Override
@@ -14,10 +16,10 @@ public class FranchiseMapperImpl implements FranchiseMapper{
         dto.setId(franchise.getId());
         dto.setName(franchise.getName());
         dto.setDescription(franchise.getDescription());
-        if (dto.getMovies()!=null) {
-            Set<Integer> movieIdSet = franchise.getMovies()
+        if (franchise.getMovies()!=null) {
+            List<Integer> movieIdSet = franchise.getMovies()
                     .stream()
-                    .map(Movie::getId).collect(Collectors.toSet());
+                    .map(Movie::getId).collect(Collectors.toList());
             dto.setMovies(movieIdSet);
         }
         return dto;
