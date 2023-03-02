@@ -11,12 +11,9 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.function.UnaryOperator;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -61,7 +58,7 @@ public class MovieServiceImpl implements MovieService {
 
     @Transactional
     @Override
-    public Movie updateMovieActors(List<Integer> actorsId, int id) { // God function
+    public Movie updateMovieActors(List<Integer> actorsId, int id) {
         Movie movie = getMovieById(id);
 
 

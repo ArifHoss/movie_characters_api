@@ -1,11 +1,13 @@
 package com.experis.movie_characters_api.services.implementation;
 
+import com.experis.movie_characters_api.exception.ConflictException;
 import com.experis.movie_characters_api.exception.ResourceNotFoundException;
 import com.experis.movie_characters_api.model.entity.Franchise;
 import com.experis.movie_characters_api.model.entity.Movie;
 import com.experis.movie_characters_api.repositories.FranchiseRepository;
 import com.experis.movie_characters_api.repositories.MovieRepository;
 import com.experis.movie_characters_api.services.service_view.FranchiseService;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -54,15 +56,22 @@ public class FranchiseServiceImpl implements FranchiseService {
         return findFranchiseToUpdate;
     }
 
+    @Transactional
     @Override
     public Franchise updateFranchiseMovies(List<Integer> moviesId, int id) {
-        //Updating movies in a franchise.
-        //This can take in an integer array of movie Id’s in the body, and an Franchise Id in the path.
         Franchise franchise = getFranchiseById(id);
+        Set<Movie> newMovies = new HashSet<>(movieRepository.findAllById(moviesId));
         Set<Movie> existingMovies = franchise.getMovies();
 
-        Set<Movie> newMovies = new HashSet<>(movieRepository.findAllById(moviesId));
+        if (moviesId.size() != newMovies.size()) {
+            throw new ConflictException("You can not add same movie");
+        }
 
+        boolean hasDuplicateMovies = newMovies.stream().anyMatch(movie -> newMovies.stream().anyMatch(movie1 -> movie != movie1));
+
+        if (newMovies.containsAll(existingMovies) || hasDuplicateMovies) {
+            throw new ConflictException("You can not add same movie");
+        }
 
         for (Movie movie : existingMovies) {
             movie.setFranchise(null);
@@ -70,7 +79,7 @@ public class FranchiseServiceImpl implements FranchiseService {
         }
 
         for (Movie movie : newMovies) {
-            movie.getFranchise().setMovies(newMovies);
+            movie.setFranchise(franchise);
             movieRepository.save(movie);
         }
         franchise.setMovies(newMovies);
