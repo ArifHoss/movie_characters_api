@@ -2,6 +2,7 @@ package com.experis.movie_characters_api.services.implementation;
 
 import com.experis.movie_characters_api.exception.ConflictException;
 import com.experis.movie_characters_api.exception.ResourceNotFoundException;
+import com.experis.movie_characters_api.model.entity.Actor;
 import com.experis.movie_characters_api.model.entity.Franchise;
 import com.experis.movie_characters_api.model.entity.Movie;
 import com.experis.movie_characters_api.repositories.FranchiseRepository;
@@ -11,9 +12,11 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -92,6 +95,17 @@ public class FranchiseServiceImpl implements FranchiseService {
         franchise.setMovies(newMovies);
         franchiseRepository.save(franchise);
         return franchise;
+    }
+
+    @Override
+    public List<Actor> getAllActorsInAFranchiseById(int id) {
+        Franchise franchise = getFranchiseById(id);
+        Set<Movie> movies = franchise.getMovies();
+        Set<Actor> actors = new HashSet<>();
+        for (Movie movie : movies) {
+            actors.addAll(movie.getActors());
+        }
+        return new ArrayList<>(actors);
     }
 
     private Franchise getFranchiseById(int id) {

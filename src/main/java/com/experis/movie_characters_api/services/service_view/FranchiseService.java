@@ -1,5 +1,6 @@
 package com.experis.movie_characters_api.services.service_view;
 
+import com.experis.movie_characters_api.model.entity.Actor;
 import com.experis.movie_characters_api.model.entity.Franchise;
 import com.experis.movie_characters_api.model.entity.Movie;
 
@@ -15,4 +16,6 @@ public interface FranchiseService {
     Franchise update(Franchise franchise, int id);
 
     Franchise updateFranchiseMovies(List<Integer> moviesId, int id);
+
+    List<Actor> getAllActorsInAFranchiseById(int id);
 }

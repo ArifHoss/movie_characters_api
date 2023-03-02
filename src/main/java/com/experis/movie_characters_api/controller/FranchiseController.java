@@ -1,9 +1,7 @@
 package com.experis.movie_characters_api.controller;
 
-import com.experis.movie_characters_api.model.dto.FranchiseDto;
-import com.experis.movie_characters_api.model.dto.FranchiseMapper;
-import com.experis.movie_characters_api.model.dto.MovieDto;
-import com.experis.movie_characters_api.model.dto.MovieMapper;
+import com.experis.movie_characters_api.model.dto.*;
+import com.experis.movie_characters_api.model.entity.Actor;
 import com.experis.movie_characters_api.model.entity.Franchise;
 import com.experis.movie_characters_api.model.entity.Movie;
 import com.experis.movie_characters_api.services.service_view.FranchiseService;
@@ -26,6 +24,7 @@ public class FranchiseController {
     private final FranchiseService franchiseService;
     private final FranchiseMapper franchiseMapper;
     private final MovieMapper movieMapper;
+    private final ActorMapper actorMapper;
 
 
     @GetMapping
@@ -46,6 +45,20 @@ public class FranchiseController {
     public List<MovieDto> getAllMoviesInAFranchiseById(@PathVariable("franchiseId") int id) {
         Set<Movie> movies = franchiseService.getAllMoviesInAFranchiseById(id);
         return movies.stream().map(movieMapper::toMovieDto).collect(Collectors.toList());
+    }
+
+
+//    @GetMapping("/actors/franchiseid/{franchiseId}")
+//    @ResponseStatus(value = HttpStatus.FOUND)
+//    public List<ActorDto> getAllActorsInAFranchiseById(@PathVariable("franchiseId") int id) {
+//        Set<Set<Actor>>  actors = franchiseService.getAllActorsInAFranchiseById(id);
+//        return actors.stream().map(actorMapper::toActorDto).collect(Collectors.toSet());
+//    }
+    @GetMapping("/actors/franchiseid/{franchiseId}")
+    @ResponseStatus(value = HttpStatus.FOUND)
+    public List<ActorDto> getAllActorsInAFranchiseById(@PathVariable("franchiseId") int id) {
+        List<Actor> actors = franchiseService.getAllActorsInAFranchiseById(id);
+        return actors.stream().map(actorMapper::toActorDto).collect(Collectors.toList());
     }
 
     @PostMapping("/create")

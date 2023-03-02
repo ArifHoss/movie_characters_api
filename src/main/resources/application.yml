@@ -20,7 +20,7 @@ spring:
     allow-bean-definition-overriding: true # If you want to allow overriding of beans
   sql:
     init:
-      mode: never
+      mode: always
 #springdoc:
 #  swagger-ui:
 #    operationsSorter: method
