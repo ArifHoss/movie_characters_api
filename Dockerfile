@@ -11,9 +11,9 @@ RUN mvn -f pom.xml clean package
 FROM openjdk:17
 
 # Copy the built artifact from the previous stage
-COPY --from=build /home/app/target/movie_characters_api-0.0.1-SNAPSHOT.jar /usr/src/entryid/
+COPY --from=build target/movie_characters_api-0.0.1-SNAPSHOT.jar /
 
-WORKDIR usr/src/entryid/
+WORKDIR usr/src/movie_characters_api/
 # Expose the default port used by the application
 EXPOSE 8080
 
