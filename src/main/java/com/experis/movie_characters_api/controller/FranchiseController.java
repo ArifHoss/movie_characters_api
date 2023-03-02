@@ -47,13 +47,6 @@ public class FranchiseController {
         return movies.stream().map(movieMapper::toMovieDto).collect(Collectors.toList());
     }
 
-
-//    @GetMapping("/actors/franchiseid/{franchiseId}")
-//    @ResponseStatus(value = HttpStatus.FOUND)
-//    public List<ActorDto> getAllActorsInAFranchiseById(@PathVariable("franchiseId") int id) {
-//        Set<Set<Actor>>  actors = franchiseService.getAllActorsInAFranchiseById(id);
-//        return actors.stream().map(actorMapper::toActorDto).collect(Collectors.toSet());
-//    }
     @GetMapping("/actors/franchiseid/{franchiseId}")
     @ResponseStatus(value = HttpStatus.FOUND)
     public List<ActorDto> getAllActorsInAFranchiseById(@PathVariable("franchiseId") int id) {

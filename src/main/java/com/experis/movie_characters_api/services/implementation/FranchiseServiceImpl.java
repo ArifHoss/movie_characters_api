@@ -77,12 +77,6 @@ public class FranchiseServiceImpl implements FranchiseService {
             throw new ConflictException("You can not add same movie");
         }
 
-//        boolean hasDuplicateMovies = newMovies.stream().anyMatch(movie -> newMovies.stream().anyMatch(movie1 -> movie != movie1));
-//
-//        if (newMovies.containsAll(existingMovies) || hasDuplicateMovies) {
-//            throw new ConflictException("You can not add same movie");
-//        }
-
         for (Movie movie : existingMovies) {
             movie.setFranchise(null);
             movieRepository.save(movie);

@@ -74,13 +74,6 @@ public class MovieServiceImpl implements MovieService {
             throw new ConflictException("You can not add to same character!");
         }
 
-//        boolean hasDuplicateActors  = newActors.stream().anyMatch(actor -> newActors.stream().anyMatch(old -> actor != old));
-//
-//        if (newActors.containsAll(existingActors) || hasDuplicateActors ) {
-//            throw new ConflictException("Do not do it!Last warning!");
-//        }
-
-
         for (Actor actor : existingActors) {
             actor.setMovies(null);
             actorRepository.save(actor);

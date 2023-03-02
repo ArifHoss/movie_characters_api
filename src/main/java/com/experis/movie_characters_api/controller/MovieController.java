@@ -31,7 +31,6 @@ public class MovieController {
     @GetMapping //http://localhost:8080/api/movie
     @ResponseStatus(value = HttpStatus.OK)
     public List<MovieDto> getAllMovie() {
-        // Retrieves all movies from the database and mapps them to a list of 'MovieDto' objects using 'MovieMapper' class.
         List<Movie> movies = movieService.getAll();
         return movies.stream().map(movieMapper::toMovieDto).collect(Collectors.toList());
     }

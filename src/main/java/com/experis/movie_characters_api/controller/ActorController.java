@@ -27,7 +27,6 @@ public class ActorController {
     @GetMapping //http://localhost:8080/api/actor
     @ResponseStatus(value = HttpStatus.OK)
     public List<ActorDto> getAllActor() {
-        // Retrieves all actors from the database and mapps them to a list of 'ActorDto' objects using 'ActorMapper' class.
         List<Actor> actorList = actorService.getAll();
         return actorList.stream()
                 .map(actorMapper::toActorDto)
