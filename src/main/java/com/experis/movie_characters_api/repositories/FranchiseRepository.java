@@ -11,4 +11,8 @@ import java.util.Set;
 @Repository
 public interface FranchiseRepository extends JpaRepository<Franchise, Integer> {
 
+//    Optional<Set<Movie>> findFranchiseByMovies(Integer id);
+
+    //Optional<Set<Character>> findByMoviesFranchiseId(Integer id);
+
 }
