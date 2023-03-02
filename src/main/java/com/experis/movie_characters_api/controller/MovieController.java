@@ -61,11 +61,13 @@ public class MovieController {
         return movieMapper.toMovieDto(createMovie);
     }
 
+    @Operation(summary = "UPDATE MOVIE")
     @PatchMapping("/update/{movieId}") //http://localhost:8080/api/movie/update/{actorId}
     public MovieDto updateMovie(@RequestBody Movie movie, @PathVariable("movieId") int id) {
         Movie updatedMovie = movieService.update(movie, id);
         return movieMapper.toMovieDto(updatedMovie);
     }
+    @Operation(summary = "UPDATE  MOVIE")
     @PatchMapping("/update/actors/{movieId}") //http://localhost:8080/api/movie/update/{actorId}
     public MovieDto updateMovieActors(@RequestBody List<Integer> actorsId, @PathVariable("movieId") int id) {
         Movie updatedMovie = movieService.updateMovieActors(actorsId,id);
