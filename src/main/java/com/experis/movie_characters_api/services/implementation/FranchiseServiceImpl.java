@@ -32,8 +32,11 @@ public class FranchiseServiceImpl implements FranchiseService {
     }
 
     @Override
-    public Franchise getByName(String name) {
-        return null;
+    public Set<Movie> getAllMoviesInAFranchiseById(int id) {
+
+        Franchise franchiseById = getFranchiseById(id);
+        Set<Movie> movies = franchiseById.getMovies();
+        return movies;
     }
 
     @Override
