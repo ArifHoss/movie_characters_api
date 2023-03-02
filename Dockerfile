@@ -1,25 +1,10 @@
-# Start with a base image that includes Java and Maven
-FROM maven:3.8.4-openjdk-17 AS build
+FROM maven:3.8.5-openjdk-17-slim AS build
+COPY src /home/app/src/
+COPY pom.xml /home/app/
+RUN mvn -f /home/app/pom.xml clean package
 
-# Copy the project files to the container
-COPY . .
-
-# Build the project using Maven
-RUN mvn -f pom.xml clean package
-
-# Use a smaller image for runtime
 FROM openjdk:17
-
-# Copy the built artifact from the previous stage
-COPY --from=build /home/app/target/movie_characters_api-0.0.1-SNAPSHOT.jar /usr/src/entryid/
-
-WORKDIR usr/src/entryid/
-# Expose the default port used by the application
-EXPOSE 8080
-
-# Set the command to run the application when the container starts
+COPY --from=build /home/app/target/movie_characters_api-0.0.1-SNAPSHOT.jar /usr/src/movie_characters_api/
+WORKDIR /usr/src/movie_characters_api/
+EXPOSE 8088
 ENTRYPOINT ["java", "-jar", "movie_characters_api-0.0.1-SNAPSHOT.jar"]
-
-
-#docker build -t movie-characters-api .
-#docker run -p 8080:8080 movie-characters-api
