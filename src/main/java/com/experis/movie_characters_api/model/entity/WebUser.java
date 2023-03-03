@@ -15,5 +15,7 @@ public class WebUser {
     private int webuser_id;
     private String name;
     private String email;
+    @Transient
     private String password;
+    private String role; // DEVELOPER, ADMIN and USER
 }
