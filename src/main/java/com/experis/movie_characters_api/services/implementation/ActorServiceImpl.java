@@ -9,7 +9,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.Set;
 
 @Service
@@ -24,11 +23,6 @@ public class ActorServiceImpl implements ActorService {
     @Override
     public Actor getById(int id) {
         return findById(id);
-    }
-
-    @Override
-    public Actor getByName(String name) {
-        return null;
     }
 
     @Override

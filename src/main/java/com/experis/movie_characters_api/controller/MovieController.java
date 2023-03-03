@@ -1,7 +1,10 @@
 package com.experis.movie_characters_api.controller;
 
+import com.experis.movie_characters_api.model.dto.ActorDto;
+import com.experis.movie_characters_api.model.dto.ActorMapper;
 import com.experis.movie_characters_api.model.dto.MovieDto;
 import com.experis.movie_characters_api.model.dto.MovieMapper;
+import com.experis.movie_characters_api.model.entity.Actor;
 import com.experis.movie_characters_api.model.entity.Movie;
 import com.experis.movie_characters_api.services.service_view.MovieService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -22,12 +25,12 @@ public class MovieController {
 
     private final MovieService movieService;
     private final MovieMapper movieMapper;
+    private final ActorMapper actorMapper;
 
     @Operation(summary = "GET ALL MOVIES")
     @GetMapping //http://localhost:8080/api/movie
     @ResponseStatus(value = HttpStatus.OK)
     public List<MovieDto> getAllMovie() {
-        // Retrieves all movies from the database and mapps them to a list of 'MovieDto' objects using 'MovieMapper' class.
         List<Movie> movies = movieService.getAll();
         return movies.stream().map(movieMapper::toMovieDto).collect(Collectors.toList());
     }
@@ -41,12 +44,14 @@ public class MovieController {
     }
 
     @Operation(summary = "GET MOVIE BY NAME")
-    @GetMapping("/name") //http://localhost:8080/api/movie/{name}
+    @GetMapping("/actors/movieId/{movieId}") //http://localhost:8080/api/movie/{name}
     @ResponseStatus(value = HttpStatus.FOUND)
-    public MovieDto getMovieName(@RequestParam String name) {
-        Movie movie = movieService.getByName(name);
-        return movieMapper.toMovieDto(movie);
+    public List<ActorDto> getActorsFromAMovie(@PathVariable("movieId")int id) {
+        List<Actor> actors = movieService.getActorsFromAMovie(id);
+        return actors.stream().map(actorMapper::toActorDto).collect(Collectors.toList());
+
     }
+
 
     @Operation(summary = "CREATE MOVIE")
     @PostMapping("/create") //http://localhost:8080/api/movie/create
