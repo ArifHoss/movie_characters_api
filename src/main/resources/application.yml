@@ -3,20 +3,16 @@ server:
     context-path: "/api"
 spring:
   datasource:
-    url: jdbc:postgresql://127.0.0.1:5433/movie_characters_api
+    url: jdbc:postgresql://pg:5432/movie_characters_api
     username: postgres
     password: root
   jpa:
-    database-platform: org.hibernate.dialect.PostgreSQLDialect
     hibernate:
       ddl-auto: update # Change to "create" for first time use to generate database schema then change to "update"
     properties:
       hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
         show_sql: true
-        format_sql: true
-
-  banner:
-    location: classpath:/path/to/banner/banner.txt
   main:
     allow-bean-definition-overriding: true # If you want to allow overriding of beans
   sql:
