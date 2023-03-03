@@ -6,7 +6,7 @@ services:
       POSTGRES_PASSWORD: "root"
       POSTGRES_DB: "movie_characters_api"
     ports:
-      - "127.0.0.1:5432:5432"
+      - "127.0.0.1:5433:5432"
     networks:
       - my-network
 
@@ -17,7 +17,7 @@ services:
         PROJECT-NAME: movie_characters_api
     entrypoint: "java -jar movie_characters_api-0.0.1-SNAPSHOT.jar"
     ports:
-      - "127.0.0.1:8088:8080"
+      - "127.0.0.1:8080:8080"
     depends_on:
       - pg
     networks:
