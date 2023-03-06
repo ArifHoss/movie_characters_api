@@ -1,17 +1,14 @@
-FROM maven:3.8.4-openjdk-17-slim AS maven
-WORKDIR /app
-COPY . .
-RUN mvn clean package
+# Fetching latest version of Java
+FROM openjdk:17
 
-FROM openjdk:17 AS runtime
+# Setting up work directory
 WORKDIR /app
 
-ENV SPRING_PROFILE "prod"
-ENV DDL_AUTO "none"
-ENV INIT_MODE "always"
-ENV SHOW_JPA_SQL "false"
+# Copy the jar file into our app
+COPY ./target/movie_characters_api-0.0.1-SNAPSHOT.jar /app
 
-COPY --from=maven /app/target/movie_characters_api-0.0.1-SNAPSHOT.jar /app/app.jar
-RUN chown -R 1000:1000 /app
-USER 1000:1000
-ENTRYPOINT ["java", "-jar", "movie_characters_api-0.0.1-SNAPSHOT.jar"]
+# Exposing port 8080
+EXPOSE 8080
+
+# Starting the application
+ENTRYPOINT ["java", "-jar", "/app/movie_characters_api-0.0.1-SNAPSHOT.jar"]

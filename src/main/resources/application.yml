@@ -3,17 +3,18 @@ server:
     context-path: "/api"
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/movie_characters_api
+    url: jdbc:postgresql://127.0.0.1:5433/movie_characters_api
     username: postgres
     password: root
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
     hibernate:
-      ddl-auto: update # Change to "create" for first time use to generate database schema then change to "update"
+      ddl-auto: create # Change to "create" for first time use to generate database schema then change to "update"
     properties:
       hibernate:
         show_sql: true
         format_sql: true
+
   banner:
     location: classpath:/path/to/banner/banner.txt
   main:
@@ -21,8 +22,5 @@ spring:
   sql:
     init:
       mode: never
-#springdoc:
-#  swagger-ui:
-#    operationsSorter: method
 
 
